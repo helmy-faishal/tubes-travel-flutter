@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
       bottomNavigationBar: const BottomNavbar(),
       body: Center(
         child: ElevatedButton(
-          child: Text('Login'),
+          child: const Text('Login'),
           onPressed: (){
             Navigator.pushNamed(context, '/login');
           },

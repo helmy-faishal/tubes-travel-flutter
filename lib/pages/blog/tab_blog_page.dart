@@ -10,11 +10,7 @@ class BlogPage extends StatefulWidget {
   State<BlogPage> createState() => _BlogPageState();
 }
 
-class _BlogPageState extends State<BlogPage> with AutomaticKeepAliveClientMixin<BlogPage>{
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
+class _BlogPageState extends State<BlogPage>{
 
   @override
   Widget build(BuildContext context) {

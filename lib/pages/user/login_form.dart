@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Login'),
+          title: const Text('Login'),
           backgroundColor: bgHeaderColor,
         ),
         resizeToAvoidBottomInset: true,

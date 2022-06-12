@@ -183,7 +183,7 @@ class _BlogPageState extends State<BlogPage> {
             Expanded(child: listBlog()),
           ]
         ),
-        bottomNavigationBar: BottomNavbar(),
+        bottomNavigationBar: const BottomNavbar(),
       ),
     );
   }

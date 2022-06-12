@@ -86,7 +86,7 @@ class RegisterPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Register'),
+          title: const Text('Register'),
           backgroundColor: bgHeaderColor,
         ),
         resizeToAvoidBottomInset: true,

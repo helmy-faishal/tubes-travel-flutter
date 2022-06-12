@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tubes_travel_flutter/provider/blog_provider.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({ Key? key }) : super(key: key);
