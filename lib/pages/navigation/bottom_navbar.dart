@@ -12,7 +12,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   List routes = [
     '/homepage',
     '/blog',
-    '/booking',
+    '/paket',
     '/profile'
   ];
 

@@ -1,18 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:random_string_generator/random_string_generator.dart';
-
 class BookingModel{
-  int? id;
   String? nama;
   String? paket_wisata;
-  DateTime? tgl_perjalanan;
+  String? tgl_perjalanan;
   String? metode_pembayaran;
   String? invoice;
   int? harga;
 
   BookingModel({
-    this.id,
     this.nama,
     this.paket_wisata,
     this.tgl_perjalanan,
@@ -22,7 +18,6 @@ class BookingModel{
   });
 
   BookingModel.fromJson(Map<String, dynamic> json){
-    id = json['id'];
     nama = json['nama'];
     paket_wisata = json['paket_wisata'];
     tgl_perjalanan = json['tgl_perjalanan'];
@@ -33,7 +28,6 @@ class BookingModel{
 
   Map<String, dynamic> toJson(){
     return {
-      'user_id' : id,
       'nama' : nama,
       'paket_wisata' : paket_wisata,
       'tgl_perjalanan' : tgl_perjalanan,

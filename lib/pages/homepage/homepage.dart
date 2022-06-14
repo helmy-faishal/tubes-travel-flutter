@@ -189,7 +189,7 @@ class HomePage extends StatelessWidget {
     Widget kePemesanan(){
       return GestureDetector(
         onTap: (){
-          Navigator.pushReplacementNamed(context, '/booking');
+          Navigator.pushReplacementNamed(context, '/paket');
         },
         child: Container(
           margin: const EdgeInsets.all(15),

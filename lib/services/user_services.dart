@@ -55,4 +55,20 @@ class UserService{
       throw Exception("Gagal mengambil data");
     }
   }
+
+  Future<bool> logout(String token) async {
+    var logoutUrl = baseApiUrl+'logout';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer $token'
+    };
+
+    var response = await http.get(Uri.parse(logoutUrl),headers: headers);
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 }

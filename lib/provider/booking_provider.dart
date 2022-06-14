@@ -8,23 +8,45 @@ import 'package:tubes_travel_flutter/services/user_services.dart';
 
 class BookingProvider with ChangeNotifier{
 
-  Future<bool> processBooking(
-    String token,
+  late BookingModel _booking;
+
+  BookingModel get booking => _booking;
+
+  set booking(BookingModel booking) {
+    _booking = booking;
+    notifyListeners();
+  }
+
+  Future<void> getBooking(
     String nama,
     String paket_wisata,
-    DateTime tgl_perjalanan,
+    String tgl_perjalanan,
     String metode_pembayaran,
     int harga,
   ) async {
+
+    if (harga == -1){
+      throw Exception('Ada Error');
+    }
+
+    BookingModel booking = BookingService().getBookingModel(
+      nama,
+      paket_wisata,
+      tgl_perjalanan,
+      metode_pembayaran,
+      harga
+    );
+
+    _booking = booking;
+    notifyListeners();
+  }
+
+  Future<bool> processBooking(
+    String token,
+    BookingModel booking,
+  ) async {
     try {
-      if(await BookingService().booking(
-        token,
-        nama,
-        paket_wisata,
-        tgl_perjalanan,
-        metode_pembayaran,
-        harga,
-      )){
+      if(await BookingService().booking( token, booking, )){
         return true;
       } else {
         return false;

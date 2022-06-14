@@ -54,4 +54,13 @@ class UserProvider with ChangeNotifier{
     }
   }
 
+  Future<void> logout() async {
+    if (await UserService().logout(_user.token.toString())) {
+      isLoggedIn = false;
+      notifyListeners();
+    } else {
+      throw Exception('Gagal Logout');
+    }
+  }
+
 }

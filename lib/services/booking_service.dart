@@ -29,23 +29,15 @@ class BookingService{
     }
   }
 
-  Future<bool> booking(
-    String token,
+  BookingModel getBookingModel(
     String nama,
     String paket_wisata,
-    DateTime tgl_perjalanan,
+    String tgl_perjalanan,
     String metode_pembayaran,
     int harga,
-  ) async{
-    var bookingUrl = baseApiUrl+'booking/store';
-    var headers = {
-      'Content-Type': 'application/json',
-      'Authorization' : 'Bearer $token'
-    };
-
-    var invoice = generateInvoice();
-
-    BookingModel booking =  BookingModel(
+  ){
+    String invoice = generateInvoice();
+    return BookingModel(
       nama: nama,
       paket_wisata: paket_wisata,
       tgl_perjalanan: tgl_perjalanan,
@@ -53,10 +45,22 @@ class BookingService{
       invoice: invoice,
       harga: harga
     );
+  }
+
+  Future<bool> booking(
+    String token,
+    BookingModel booking,
+  ) async{
+    var bookingUrl = baseApiUrl+'booking/store';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer $token'
+    };
+
     var body = jsonEncode(booking.toJson());
 
     var response = await http.post(Uri.parse(bookingUrl),headers: headers, body: body);
-    if (response.statusCode != 201) {
+    if (response.statusCode == 201) {
       return true;
     } else {
       throw Exception('Gagal melakukan booking');
@@ -65,8 +69,9 @@ class BookingService{
 
   String generateInvoice() {
     var generator = RandomStringGenerator(
-      minLength: 32,
+      minLength: 16,
       maxLength: 32,
+      hasSymbols: false,
     );
     return generator.generate();
   }
