@@ -9,6 +9,8 @@ import 'package:tubes_travel_flutter/pages/splash_screen.dart';
 import 'package:tubes_travel_flutter/pages/user/login_form.dart';
 import 'package:tubes_travel_flutter/pages/user/register_form.dart';
 import 'package:tubes_travel_flutter/provider/blog_provider.dart';
+import 'package:tubes_travel_flutter/provider/booking_provider.dart';
+import 'package:tubes_travel_flutter/provider/user_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,13 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>BlogProvider())
+        ChangeNotifierProvider(create: (context)=>UserProvider()),
+        ChangeNotifierProvider(create: (context)=>BlogProvider()),
+        ChangeNotifierProvider(create: (context)=>BookingProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/login' :(context) => const LoginPage(),
-          '/register' :(context) => const RegisterPage(),
+          '/login' :(context) => LoginPage(),
+          '/register' :(context) => RegisterPage(),
           '/homepage' :(context) => const HomePage(),
           '/blog' : (context) => const BlogPage(),
           '/booking' :(context) => const BookingPage(),
