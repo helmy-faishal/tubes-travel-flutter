@@ -136,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Register'),
+          title: const Text('Daftar'),
           backgroundColor: bgHeaderColor,
         ),
         resizeToAvoidBottomInset: true,

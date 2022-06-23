@@ -5,6 +5,7 @@ import 'package:tubes_travel_flutter/pages/booking/booking_confirmation_page.dar
 import 'package:tubes_travel_flutter/pages/booking/booking_form_page.dart';
 import 'package:tubes_travel_flutter/pages/booking/booking_page.dart';
 import 'package:tubes_travel_flutter/pages/homepage/homepage.dart';
+import 'package:tubes_travel_flutter/pages/profile/booking_history.dart';
 import 'package:tubes_travel_flutter/pages/profile/profile_page.dart';
 // import 'package:tubes_travel_flutter/pages/blog/tab_blog_page.dart';
 import 'package:tubes_travel_flutter/pages/splash_screen.dart';
@@ -31,14 +32,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/login' :(context) => LoginPage(),
+          '/login' :(context) => const LoginPage(),
           '/register' :(context) => RegisterPage(),
           '/homepage' :(context) => const HomePage(),
           '/blog' : (context) => const BlogPage(),
           '/paket' :(context) => const BookingPage(),
-          '/paket/booking' : (context) => BookingFormPage(),
-          '/paket/booking/konfirmasi' :(context) => BookingConfirmation(),
+          '/paket/booking' : (context) => const BookingFormPage(),
+          '/paket/booking/konfirmasi' :(context) => const BookingConfirmation(),
           '/profile' :(context) => const ProfilePage(),
+          '/profile/booking' :(context) => const BookingHistory(), 
         },
         home: const Scaffold(
           body: SafeArea(

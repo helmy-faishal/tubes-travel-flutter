@@ -54,6 +54,22 @@ class UserProvider with ChangeNotifier{
     }
   }
 
+  Future<bool> update(
+    String username,
+    String email,
+  ) async {
+    try {
+      UserModel updatedUser = await UserService().update(_user,username: username,email: email);
+
+      _user = updatedUser;
+      return true;
+
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future<void> logout() async {
     if (await UserService().logout(_user.token.toString())) {
       isLoggedIn = false;

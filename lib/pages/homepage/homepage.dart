@@ -23,9 +23,10 @@ class HomePage extends StatelessWidget {
             const Text(
               "Banjarnegara merupakan sebuah Kabupaten yang terletak di Jawa Tengah, Kabupaten ini memiliki sejuta pesona dan panaroma alam yang menakjubkan dan masih banyak yang tersembunyi.",
               overflow: TextOverflow.clip,
+              style: TextStyle(fontSize: 20),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             Image.asset(
               "assets/logo-banjarnegara.png",
@@ -56,6 +57,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     "Perjalanan yang Menyenangkan dan Akan Selalu Terkenang",
                     overflow: TextOverflow.clip,
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(
@@ -81,9 +83,10 @@ class HomePage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(10),
               child: Image.asset(
-                "assets/kesan1.png",
+                "assets/homepage/kesan1.png",
                 height: 180,
                 width: 140,
+                fit: BoxFit.cover,
               ),
             ),
           ]
@@ -91,7 +94,61 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    
+    Widget kesan2(){
+      return Container(
+        height: 300,
+        width: 400,
+        margin: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: const Color(0xffBBB18F),
+          borderRadius: BorderRadius.circular(15)
+        ),
+        child: Row(
+          children: [
+            Column(
+              children: const [
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "Pengalaman Tak Terlupakan Saat Berkunjung ke Banjarnegara",
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                Divider(
+                  color: Colors.black,
+                  thickness: 5,
+                  height: 1,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "Banyak pengalaman menarik yang akan sulit anda lupakan ketika mengunjungi Banjarnegara. Tempat yang sangat indah untuk membuat kenangan bersama teman, pasangan atau keluarga. Tempat destinasi wisata yang ramah lingkungan bagi anak-anak.",
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: Image.asset(
+                "assets/homepage/kesan2.jpg",
+                height: 180,
+                width: 140,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ]
+        ),
+      );
+    }
 
     Widget scrollKesan(){
       return SingleChildScrollView(
@@ -99,7 +156,7 @@ class HomePage extends StatelessWidget {
         child: Row(
           children: [
             kesan1(),
-            kesan1()
+            kesan2()
           ],
         ),
       );
@@ -111,13 +168,15 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Dieng Culture Festival"),
+            const Text(
+              "Dieng Culture Festival",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             CarouselSlider(
               items: [
-                Image.asset('assets/slide1.png'),
-                Image.asset('assets/slide1.png'),
-                Image.asset('assets/slide1.png'),
-                Image.asset('assets/slide1.png'),
+                Image.asset('assets/homepage/slide1.jpg'),
+                Image.asset('assets/homepage/slide2.jpg'),
+                Image.asset('assets/homepage/slide3.jpg'),
                 
               ],
               options: CarouselOptions(
@@ -142,7 +201,7 @@ class HomePage extends StatelessWidget {
           children: [
             Container(
               child: Image.asset(
-                'assets/alasan1.png',
+                'assets/homepage/alasan1.png',
                 fit: BoxFit.cover,
               ),
               alignment: Alignment.center,
@@ -150,6 +209,74 @@ class HomePage extends StatelessWidget {
             Container(
               child: const Text(
                 "Murah",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
+              alignment: Alignment.center,
+            )
+          ],
+        ),
+      );
+    }
+
+    Widget alasan2(){
+      return Container(
+        width: 390,
+        height: 300,
+        margin: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.transparent
+        ),
+        child: Stack(
+          children: [
+            Container(
+              child: Image.asset(
+                'assets/homepage/alasan2.jpg',
+                fit: BoxFit.cover,
+              ),
+              alignment: Alignment.center,
+            ),
+            Container(
+              child: const Text(
+                "Aman",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
+              alignment: Alignment.center,
+            )
+          ],
+        ),
+      );
+    }
+
+    Widget alasan3(){
+      return Container(
+        width: 390,
+        height: 300,
+        margin: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.transparent
+        ),
+        child: Stack(
+          children: [
+            Container(
+              child: Image.asset(
+                'assets/homepage/alasan3.jpg',
+                fit: BoxFit.cover,
+              ),
+              alignment: Alignment.center,
+            ),
+            Container(
+              child: const Text(
+                "Terpercaya",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -176,8 +303,8 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: [
                   alasan1(),
-                  alasan1(),
-                  alasan1(),
+                  alasan2(),
+                  alasan3(),
                 ],
               ),
             )

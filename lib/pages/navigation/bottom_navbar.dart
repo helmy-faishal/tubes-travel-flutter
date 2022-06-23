@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tubes_travel_flutter/provider/user_provider.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({ Key? key }) : super(key: key);
@@ -16,12 +18,10 @@ class _BottomNavbarState extends State<BottomNavbar> {
     '/profile'
   ];
 
-  void _onItemTapped(int index) {
-    Navigator.pushReplacementNamed(context, routes[index]);
-  }
-
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return BottomNavigationBar(
       items: const [
         BottomNavigationBarItem(
@@ -33,8 +33,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: "Blog"
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.backpack),
-          label: "Booking"
+          icon: Icon(Icons.flight_takeoff),
+          label: "Paket Wisata"
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
@@ -43,7 +43,13 @@ class _BottomNavbarState extends State<BottomNavbar> {
       ],
     
       currentIndex: routes.indexOf(ModalRoute.of(context)!.settings.name),
-      onTap: _onItemTapped,
+      onTap: (index){
+        if (index == 3 && !userProvider.isLoggedIn) {
+          Navigator.pushNamed(context, '/login');
+        } else {
+          Navigator.pushReplacementNamed(context, routes[index]);
+        }
+      },
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,

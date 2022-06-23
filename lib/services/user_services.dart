@@ -56,6 +56,33 @@ class UserService{
     }
   }
 
+  Future<UserModel> update(UserModel user, {String username = "", String email = ""}) async {
+    var updateUrl = baseApiUrl+'profile/update';
+    var headers = {
+      'Content-Type':'application/json',
+      'Authorization' : 'Bearer ${user.token}'
+    };
+    var body = jsonEncode({
+      'username': username.trim() == "" ? user.username:username,
+      'email': email.trim() == "" ? user.email:email,
+    });
+
+    var response = await http.post(
+      Uri.parse(updateUrl),
+      headers: headers,
+      body: body
+    );
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      print(data);
+      UserModel updatedUser = user.updateFromJson(data);
+      return updatedUser;
+    } else {
+      throw Exception("Gagal mengambil data");
+    }
+  }
+
   Future<bool> logout(String token) async {
     var logoutUrl = baseApiUrl+'logout';
     var headers = {

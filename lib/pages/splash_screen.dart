@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tubes_travel_flutter/provider/blog_provider.dart';
@@ -18,7 +20,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     
-    getInit();
+    // getInit();
+    Timer(Duration(seconds: 5), (){
+      Navigator.pushReplacementNamed(context, '/homepage');
+    });
 
     super.initState();
   }

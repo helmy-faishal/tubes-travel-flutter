@@ -28,18 +28,18 @@ class BookingConfirmation extends StatelessWidget {
     Widget bookingButton() {
       return Container(
         height: 45,
-        width: 150,
+        width: 180,
         margin: const EdgeInsets.only(top: 20),
         child: TextButton(
           onPressed: (){
             handleProcessBooking();
           },
           style: TextButton.styleFrom(
-            backgroundColor: btnColor
+            backgroundColor: Colors.green
           ),
           child: const Text(
-            "Pesan Sekarang",
-            style: TextStyle(color: Colors.black),
+            "Konfirmasi Pemesanan",
+            style: TextStyle(color: Colors.white),
           ),
         ),
       );
@@ -48,27 +48,85 @@ class BookingConfirmation extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Konfirmasi'),
+          title: const Text('Konfirmasi'),
         ),
         body: Container(
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(20),
+          height: 500,
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              )
+            ]
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Nama Pemesan: ${booking.nama.toString()}'),
-              SizedBox(height: 10,),
-              Text('Paket: ${booking.paket_wisata.toString()}'),
-              SizedBox(height: 10,),
-              Text('Tanggal: ${booking.tgl_perjalanan.toString()}'),
-              SizedBox(height: 10,),
-              Text('Metode: ${booking.metode_pembayaran.toString()}'),
-              SizedBox(height: 10,),
-              Text('Harga: Rp${booking.harga.toString()}'),
-              SizedBox(height: 10,),
+              Text(
+                'Nama Pemesan',
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 10,),
+              Text(
+                booking.nama.toString(),
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20,),
+              Text(
+                'Paket Wisata',
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 10,),
+              Text(
+                booking.paket_wisata.toString(),
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20,),
+              Text(
+                'Tanggal Perjalanan',
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 10,),
+              Text(
+                booking.tgl_perjalanan.toString(),
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20,),
+              Text(
+                'Metode Pembayaran',
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 10,),
+              Text(
+                booking.metode_pembayaran.toString(),
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20,),
+              Text(
+                'Harga',
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 10,),
+              Text(
+                "Rp${booking.harga.toString()}",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20,),
               Text('Invoice: ${booking.invoice.toString()}'),
-              SizedBox(height: 10,),
-              bookingButton(),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  bookingButton(),
+                ],
+              ),
               
             ],
           ),

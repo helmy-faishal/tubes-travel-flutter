@@ -9,6 +9,19 @@ class BlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget loadImage(){
+      return Image.asset(
+        'assets/dummy.png',
+        width: 183,
+        height: 110,
+      );
+      // return Image.network(
+      //   baseUrl+data.gambar.toString(),
+      //   width: 183,
+      //   height: 110,
+      // );
+    }
+
     return Container(
       width: 270,
       padding: const EdgeInsets.all(15),
@@ -34,11 +47,7 @@ class BlogCard extends StatelessWidget {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(12)
               ),
-              child: Image.network(
-                baseUrl+data.gambar.toString(),
-                width: 183,
-                height: 110,
-              ),
+              child: loadImage(),
             ),
           ),
           const SizedBox(

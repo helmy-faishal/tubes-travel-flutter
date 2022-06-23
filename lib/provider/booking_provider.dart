@@ -9,12 +9,31 @@ import 'package:tubes_travel_flutter/services/user_services.dart';
 class BookingProvider with ChangeNotifier{
 
   late BookingModel _booking;
+  List<BookingModel> _listBooking = [];
 
   BookingModel get booking => _booking;
 
   set booking(BookingModel booking) {
     _booking = booking;
     notifyListeners();
+  }
+
+  List<BookingModel> get listBooking => _listBooking;
+  
+  set listBooking(List<BookingModel> list){
+    _listBooking = list;
+    notifyListeners();
+  }
+
+  Future<void> getBookingData(String token) async{
+    try {
+      List<BookingModel> list = await BookingService().getBookingData(token);
+      _listBooking = list;
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+
   }
 
   Future<void> getBooking(

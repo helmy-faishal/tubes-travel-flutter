@@ -2,29 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tubes_travel_flutter/provider/booking_provider.dart';
 import 'package:intl/intl.dart';
+import 'package:tubes_travel_flutter/provider/user_provider.dart';
 
 Color btnColor = const Color(0xffEAB500);
 Color textLinkColor = const Color(0xff1F35F9);
 Color bgHeaderColor = const Color(0xff393D40);
 
 class BookingFormPage extends StatefulWidget {
-  const BookingFormPage({ Key? key }) : super(key: key);
+  const BookingFormPage({Key? key}) : super(key: key);
 
   @override
   State<BookingFormPage> createState() => _BookingFormPageState();
 }
 
 class _BookingFormPageState extends State<BookingFormPage> {
-
-  final TextEditingController _namaController = TextEditingController(text: '');
+  final TextEditingController _namaController = TextEditingController(text: '###');
 
   final List<String> paketWisata = [
     'Solo Traveller',
+    'Honeymoond in Blue Sky',
     'Fun Family Vacation'
   ];
 
-  final Map<String,int> daftarHarga = {
-    'Solo Traveller' : 150000,
+  final Map<String, int> daftarHarga = {
+    'Solo Traveller': 150000,
+    'Honeymoond in Blue Sky': 150000,
     'Fun Family Vacation': 250000,
   };
 
@@ -45,25 +47,29 @@ class _BookingFormPageState extends State<BookingFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     BookingProvider bookingProvider = Provider.of<BookingProvider>(context);
 
-    handleBooking() async{
-      if (_namaController.text.trim().isEmpty){
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+    if (_namaController.text == "###") {
+      setState(() {
+        _namaController.text = userProvider.user.username.toString();
+      });
+    }
+
+    handleBooking() async {
+      if (_namaController.text.trim().isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.red,
             content: Text(
               'Nama harus diisi',
               textAlign: TextAlign.center,
-            )
-          )
-        );
+            )));
       } else {
         await bookingProvider.getBooking(
-          _namaController.text, 
-          _selectedPaket, 
-          format.format(_selectedTanggal), 
-          _selectedPembayaran, 
+          _namaController.text,
+          _selectedPaket,
+          format.format(_selectedTanggal),
+          _selectedPembayaran,
           daftarHarga[_selectedPaket] ?? -1,
         );
 
@@ -73,122 +79,170 @@ class _BookingFormPageState extends State<BookingFormPage> {
 
     Widget nameFormField() {
       return Container(
-        margin: const EdgeInsets.only(top: 10),
-        child: TextFormField(
-          controller: _namaController,
-          decoration: const InputDecoration(
-            hintText: "Masukkan Nama Pemesan",
-            labelText: "Nama Pemesan"
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white70,
+            borderRadius: BorderRadius.circular(12)
           ),
-        )
+          child: TextFormField(
+            controller: _namaController,
+            decoration: const InputDecoration(
+                hintText: "Masukkan Nama Pemesan", labelText: "Nama Pemesan"),
+          ));
+    }
+
+    Widget pilihPaketWisata() {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Colors.white70,
+            borderRadius: BorderRadius.circular(12)
+          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Pilih Paket Wisata"),
+            DropdownButton(
+                isExpanded: true,
+                value: _selectedPaket,
+                items: paketWisata
+                    .map((paket) =>
+                        DropdownMenuItem(value: paket, child: Text(paket)))
+                    .toList(),
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedPaket = value!;
+                  });
+                }),
+          ],
+        ),
       );
     }
 
-    Widget pilihPaketWisata(){
-      return DropdownButton(
-        value: _selectedPaket,
-        items: paketWisata.map(
-          (paket) => DropdownMenuItem(
-            value: paket,
-            child: Text(paket)
-          )
-        ).toList(),
-        onChanged: (String? value){
-          setState(() {
-            _selectedPaket = value!;
-          });
-        }
-      );
-    }
-
-    Widget pilihMetodePembayaran(){
-      return DropdownButton(
-        value: _selectedPembayaran,
-        items: metodePembayaran.map(
-          (metode) => DropdownMenuItem(
-            value: metode,
-            child: Text(metode)
-          )
-        ).toList(),
-        onChanged: (String? value){
-          setState(() {
-            _selectedPembayaran = value!;
-          });
-        }
+    Widget pilihMetodePembayaran() {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Colors.white70, borderRadius: BorderRadius.circular(12)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Pilih Metode Pembayaran"),
+            DropdownButton(
+                isExpanded: true,
+                value: _selectedPembayaran,
+                items: metodePembayaran
+                    .map((metode) =>
+                        DropdownMenuItem(value: metode, child: Text(metode)))
+                    .toList(),
+                onChanged: (String? value) {
+                  setState(() {
+                    _selectedPembayaran = value!;
+                  });
+                }),
+          ],
+        ),
       );
     }
 
     _pilihTanggalPerjalanan() {
-      return Row(
-        children: [
-          const Text(
-            "Tanggal dipilih:"
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: Colors.white70, 
+            borderRadius: BorderRadius.circular(12)
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            format.format(_selectedTanggal)
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              DateTime? picked = await showDatePicker(
-                context: context,
-                initialDate: _selectedTanggal,
-                firstDate: _selectedTanggal,
-                lastDate: DateTime(2999),
-                helpText: "Pilih Tanggal Perjalanan",
-                cancelText: "Batalkan",
-                confirmText: "Pilih Tanggal",
-              );
-              if (picked != null) {
-                setState(() {
-                  _selectedTanggal = picked;
-                });
-              }
-            },
-            child: const Text('Pilih tanggal')
-          ),
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Pilih Tanggal Perjalanan"),
+            SizedBox(height: 10,),
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey[100], 
+                borderRadius: BorderRadius.circular(12)
+              ),
+              child: Row(
+                children: [
+                  Spacer(),
+                  Text(
+                    format.format(_selectedTanggal),
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Spacer(),
+                  ElevatedButton(
+                      onPressed: () async {
+                        DateTime? picked = await showDatePicker(
+                          context: context,
+                          initialDate: _selectedTanggal,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2999),
+                          helpText: "Pilih Tanggal Perjalanan",
+                          cancelText: "Batalkan",
+                          confirmText: "Pilih Tanggal",
+                        );
+                        if (picked != null) {
+                          setState(() {
+                            _selectedTanggal = picked;
+                          });
+                        }
+                      },
+                      child: const Icon(Icons.calendar_month)),
+                ],
+              ),
+            ),
+          ],
+        ),
       );
     }
 
-    Widget hargaPaket(){
-      return Row(
-        children: [
-          const Text(
-            'Harga: '
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            'Rp${daftarHarga[_selectedPaket].toString()}'
-          ),
-        ],
+    Widget hargaPaket() {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Harga: '),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Rp${daftarHarga[_selectedPaket].toString()}',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       );
     }
 
     Widget bookingButton() {
-      return Container(
-        height: 45,
-        width: 150,
-        margin: const EdgeInsets.only(top: 20),
-        child: TextButton(
-          onPressed: (){
-            handleBooking();
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: btnColor
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            height: 45,
+            width: 150,
+            margin: const EdgeInsets.only(top: 20),
+            child: TextButton(
+              onPressed: () {
+                handleBooking();
+              },
+              style: TextButton.styleFrom(backgroundColor: Colors.green),
+              child: const Text(
+                "Pesan Sekarang",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ),
-          child: const Text(
-            "Pesan Sekarang",
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
+        ],
       );
     }
 
@@ -199,24 +253,23 @@ class _BookingFormPageState extends State<BookingFormPage> {
           backgroundColor: bgHeaderColor,
         ),
         resizeToAvoidBottomInset: true,
-        body: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  nameFormField(),
-                  pilihPaketWisata(),
-                  pilihMetodePembayaran(),
-                  _pilihTanggalPerjalanan(),
-                  hargaPaket(),
-                  bookingButton(),
-                ],
-              ),
+        body: Column(children: [
+          Container(
+            color: Colors.grey[250],
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                nameFormField(),
+                pilihPaketWisata(),
+                pilihMetodePembayaran(),
+                _pilihTanggalPerjalanan(),
+                hargaPaket(),
+                bookingButton(),
+              ],
             ),
-          ]
-        ),
+          ),
+        ]),
       ),
     );
   }
