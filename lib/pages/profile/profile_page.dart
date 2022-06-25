@@ -1,5 +1,10 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:tubes_travel_flutter/pages/navigation/bottom_navbar.dart';
 import 'package:tubes_travel_flutter/provider/user_provider.dart';
 
@@ -14,14 +19,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
   final TextEditingController _usernameController = TextEditingController(text: "Contoh Username");
 
-  final TextEditingController _emailController = TextEditingController(text: 'email@email.com');
+  final TextEditingController _passwordController = TextEditingController(text: '');
 
+  final TextEditingController _passwordLamaController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     setState(() {
       _usernameController.text = userProvider.user.username.toString();
-      _emailController.text = userProvider.user.email.toString();
     });
 
     handleLogout() async {
@@ -31,9 +36,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
     handleUpdate() async {
       var username = _usernameController.text;
-      var email = _emailController.text;
-      await userProvider.update(username, email);
-      Navigator.pushReplacementNamed(context, '/profile');
+      var password_baru = _passwordController.text;
+      var password_lama = _passwordLamaController.text;
+      if (await userProvider.update(username, password_lama,password_baru)){
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: "Berhasil",
+          desc: "Berhasil mengubah profil",
+        ).show();
+        Timer(const Duration(seconds: 1), (){
+          Navigator.pushReplacementNamed(context, '/profile');
+        });
+      }
     }
 
     Widget headerImage(){
@@ -69,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     const Text(
                       'Username',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(userProvider.user.username.toString()),
                   ],
@@ -143,17 +158,17 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.mail),
+                const Icon(Icons.key),
                 const SizedBox(width: 10,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
-                    const Text(
-                      'Email',
+                  children:  const [
+                    Text(
+                      'Ubah Kata Sandi',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(userProvider.user.email.toString()),
+                    // Text(userProvider.user.email.toString()),
                   ],
                 ),
               ],
@@ -166,16 +181,29 @@ class _ProfilePageState extends State<ProfilePage> {
                     return Dialog(
                       child: Container(
                         padding: const EdgeInsets.all(5),
-                        height: 180,
+                        height: 250,
                         child: Column(
                           children: [
                             Container(
                               margin: const EdgeInsets.all(10),
                               child: TextFormField(
-                                controller: _emailController,
+                                obscureText: true,
+                                controller: _passwordLamaController,
                                 decoration: const InputDecoration(
-                                  hintText: "Email",
-                                  labelText: "Email"
+                                  hintText: "Password Lama",
+                                  labelText: "Password Lama"
+                                ),
+                              )
+                            ),
+                            const SizedBox(height: 5,),
+                            Container(
+                              margin: const EdgeInsets.all(10),
+                              child: TextFormField(
+                                obscureText: true,
+                                controller: _passwordController,
+                                decoration: const InputDecoration(
+                                  hintText: "Password Baru",
+                                  labelText: "Password Baru"
                                 ),
                               )
                             ),
@@ -240,7 +268,8 @@ class _ProfilePageState extends State<ProfilePage> {
       return Container(
         padding: const EdgeInsets.all(5),
         margin: const EdgeInsets.all(10),
-        width: double.infinity,
+        height: 43,
+        width: 390,
         decoration: BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.circular(12)
@@ -271,7 +300,6 @@ class _ProfilePageState extends State<ProfilePage> {
           usernameField(),
           emailField(),
           checkBooking(),
-          const Spacer(),
           logoutButton(),
         ],
       );

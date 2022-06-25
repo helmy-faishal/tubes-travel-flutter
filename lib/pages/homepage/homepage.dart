@@ -24,14 +24,15 @@ class HomePage extends StatelessWidget {
               "Banjarnegara merupakan sebuah Kabupaten yang terletak di Jawa Tengah, Kabupaten ini memiliki sejuta pesona dan panaroma alam yang menakjubkan dan masih banyak yang tersembunyi.",
               overflow: TextOverflow.clip,
               style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 20,
             ),
             Image.asset(
               "assets/logo-banjarnegara.png",
-              height: 48,
-              width: 60,
+              height: 80,
+              width: 80,
             )
           ],
         ),
@@ -82,11 +83,14 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.all(10),
-              child: Image.asset(
-                "assets/homepage/kesan1.png",
-                height: 180,
-                width: 140,
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius:BorderRadius.circular(10),
+                child: Image.asset(
+                  "assets/homepage/kesan1.png",
+                  height: 180,
+                  width: 140,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ]
@@ -138,11 +142,14 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.all(10),
-              child: Image.asset(
-                "assets/homepage/kesan2.jpg",
-                height: 180,
-                width: 140,
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  "assets/homepage/kesan2.jpg",
+                  height: 180,
+                  width: 140,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ]
@@ -170,14 +177,47 @@ class HomePage extends StatelessWidget {
           children: [
             const Text(
               "Dieng Culture Festival",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+              ),
             ),
+            const SizedBox(height: 15,),
             CarouselSlider(
               items: [
-                Image.asset('assets/homepage/slide1.jpg'),
-                Image.asset('assets/homepage/slide2.jpg'),
-                Image.asset('assets/homepage/slide3.jpg'),
-                
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/homepage/slide1.jpg',
+                      height: 450,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/homepage/slide2.jpg',
+                      height: 450,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/homepage/slide3.jpg',
+                      height: 450,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                ),
               ],
               options: CarouselOptions(
                 autoPlay: true,
@@ -200,9 +240,13 @@ class HomePage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              child: Image.asset(
-                'assets/homepage/alasan1.png',
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/homepage/alasan1.png',
+                  height: 290,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
               alignment: Alignment.center,
             ),
@@ -234,9 +278,13 @@ class HomePage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              child: Image.asset(
-                'assets/homepage/alasan2.jpg',
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/homepage/alasan2.jpg',
+                  height: 290,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
               alignment: Alignment.center,
             ),
@@ -268,9 +316,13 @@ class HomePage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              child: Image.asset(
-                'assets/homepage/alasan3.jpg',
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/homepage/alasan3.jpg',
+                  height: 290,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
               alignment: Alignment.center,
             ),
@@ -297,7 +349,13 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Kenapa Memilih Millenium Travel Agency?'),
+            const Text(
+              'Kenapa Memilih Millenium Travel Agency?',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+              ),
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(

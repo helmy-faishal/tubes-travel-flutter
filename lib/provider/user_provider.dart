@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_print, recursive_getters
+
 import 'package:flutter/material.dart';
 import 'package:tubes_travel_flutter/models/user_model.dart';
 import 'package:tubes_travel_flutter/services/user_services.dart';
@@ -56,10 +58,15 @@ class UserProvider with ChangeNotifier{
 
   Future<bool> update(
     String username,
-    String email,
+    String password_lama,
+    String password_baru,
   ) async {
     try {
-      UserModel updatedUser = await UserService().update(_user,username: username,email: email);
+      UserModel updatedUser = await UserService().update(
+        _user,username: username,
+        password_lama: password_lama,
+        password_baru: password_baru
+      );
 
       _user = updatedUser;
       return true;

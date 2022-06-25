@@ -10,7 +10,7 @@ Color textLinknColor = const Color(0xff1F35F9);
 Color bgHeaderColor = const Color(0xff393D40);
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({ Key? key }) : super(key: key);
+  const RegisterPage({ Key? key }) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();

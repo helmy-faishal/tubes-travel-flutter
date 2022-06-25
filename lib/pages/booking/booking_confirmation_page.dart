@@ -1,5 +1,10 @@
+// ignore_for_file: unused_import
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:tubes_travel_flutter/models/booking_model.dart';
 import 'package:tubes_travel_flutter/models/user_model.dart';
 import 'package:tubes_travel_flutter/provider/booking_provider.dart';
@@ -21,7 +26,13 @@ class BookingConfirmation extends StatelessWidget {
 
     handleProcessBooking() async {
       if (await bookingProvider.processBooking( user.token.toString(), booking,)){
-        Navigator.pushReplacementNamed(context, '/paket');
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: "Berhasil",
+          desc: "Berhasil melakukan pemesanan",
+        ).show();
+        Navigator.pushNamedAndRemoveUntil(context, "/paket", (route) => false);
       }
     }
 
@@ -62,65 +73,65 @@ class BookingConfirmation extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Nama Pemesan',
                 style: TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 10,),
               Text(
                 booking.nama.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20,),
-              Text(
+              const Text(
                 'Paket Wisata',
                 style: TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 10,),
               Text(
                 booking.paket_wisata.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20,),
-              Text(
+              const Text(
                 'Tanggal Perjalanan',
                 style: TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 10,),
               Text(
                 booking.tgl_perjalanan.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20,),
-              Text(
+              const Text(
                 'Metode Pembayaran',
                 style: TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 10,),
               Text(
                 booking.metode_pembayaran.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20,),
-              Text(
+              const Text(
                 'Harga',
                 style: TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 10,),
               Text(
                 "Rp${booking.harga.toString()}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20,),
               Text('Invoice: ${booking.invoice.toString()}'),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

@@ -25,7 +25,7 @@ class BookingService{
       }
       return destinasi;
     } else {
-      throw Exception("Gagal mengambil data");
+      throw Exception(response.statusCode);
     }
   }
 
@@ -64,6 +64,47 @@ class BookingService{
       return true;
     } else {
       throw Exception('Gagal melakukan booking');
+    }
+  }
+
+  Future<BookingModel> reschedule(BookingModel booking, String token, String tgl_perjalanan) async {
+    var rescheduleUrl = baseApiUrl+'booking/reschedule';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer $token'
+    };
+
+    var body = {
+      "tgl_perjalanan" : tgl_perjalanan,
+      "invoice" : booking.invoice,
+    };
+
+    var response = await http.post(Uri.parse(rescheduleUrl),headers: headers, body: jsonEncode(body));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      BookingModel new_booking = booking.updateFromJson(data);
+      return new_booking;
+    } else {
+      throw Exception("Status Code: ${response.statusCode}");
+    }
+  }
+
+  Future<bool> delete(BookingModel booking, String token) async {
+    var rescheduleUrl = baseApiUrl+'booking/delete';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer $token'
+    };
+
+    var body = {
+      "invoice" : booking.invoice,
+    };
+
+    var response = await http.delete(Uri.parse(rescheduleUrl),headers: headers,body: jsonEncode(body));
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception("Gagal membatalkan booking");
     }
   }
 

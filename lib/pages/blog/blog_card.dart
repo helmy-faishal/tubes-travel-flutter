@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:tubes_travel_flutter/models/destination_model.dart';
 import 'package:tubes_travel_flutter/services/url_data.dart';
@@ -40,13 +42,8 @@ class BlogCard extends StatelessWidget {
             height: 8,
           ),
           Center(
-            child: Container(
-              width: 183,
-              height: 110,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(12)
-              ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
               child: loadImage(),
             ),
           ),

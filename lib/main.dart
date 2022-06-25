@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/login' :(context) => const LoginPage(),
-          '/register' :(context) => RegisterPage(),
+          '/register' :(context) => const RegisterPage(),
           '/homepage' :(context) => const HomePage(),
           '/blog' : (context) => const BlogPage(),
           '/paket' :(context) => const BookingPage(),

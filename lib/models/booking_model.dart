@@ -36,4 +36,9 @@ class BookingModel{
       'harga' : harga,
     };
   }
+
+  BookingModel updateFromJson(Map<String, dynamic> json){
+    tgl_perjalanan = json['tgl_perjalanan'];
+    return this;
+  }
 }

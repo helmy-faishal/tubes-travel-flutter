@@ -1,4 +1,6 @@
 // ignore: file_names
+// ignore_for_file: non_constant_identifier_names, avoid_print
+
 import 'dart:convert';
 
 import 'package:tubes_travel_flutter/models/user_model.dart';
@@ -56,7 +58,14 @@ class UserService{
     }
   }
 
-  Future<UserModel> update(UserModel user, {String username = "", String email = ""}) async {
+  Future<UserModel> update(
+    UserModel user, 
+    {
+      String username = "", 
+      String password_baru = "", 
+      String password_lama = ""
+    }
+  ) async {
     var updateUrl = baseApiUrl+'profile/update';
     var headers = {
       'Content-Type':'application/json',
@@ -64,7 +73,8 @@ class UserService{
     };
     var body = jsonEncode({
       'username': username.trim() == "" ? user.username:username,
-      'email': email.trim() == "" ? user.email:email,
+      'password_lama': password_lama.trim(),
+      'password_baru': password_baru.trim(),
     });
 
     var response = await http.post(
@@ -79,7 +89,7 @@ class UserService{
       UserModel updatedUser = user.updateFromJson(data);
       return updatedUser;
     } else {
-      throw Exception("Gagal mengambil data");
+      throw Exception("Gagal Update Data");
     }
   }
 

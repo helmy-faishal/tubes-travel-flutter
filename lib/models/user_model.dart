@@ -23,7 +23,6 @@ class UserModel{
 
   UserModel updateFromJson(Map<String, dynamic> json){
     username = json['username'];
-    email = json['email'];
     return this;
   }
 

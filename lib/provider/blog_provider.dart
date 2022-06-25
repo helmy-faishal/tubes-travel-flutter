@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unnecessary_getters_setters
+
 import 'package:flutter/cupertino.dart';
 import 'package:tubes_travel_flutter/models/destination_model.dart';
 import 'package:tubes_travel_flutter/services/blog_services.dart';

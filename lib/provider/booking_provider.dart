@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_import
+// ignore_for_file: non_constant_identifier_names, unused_import, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:tubes_travel_flutter/models/booking_model.dart';
@@ -70,6 +70,25 @@ class BookingProvider with ChangeNotifier{
       } else {
         return false;
       }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> deleteBooking(BookingModel booking, String token) async {
+    if (await BookingService().delete(booking, token)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> reschedule(BookingModel booking, String token, String tgl_perjalanan) async {
+    try {
+      BookingModel newBooking = await BookingService().reschedule(booking, token, tgl_perjalanan);
+      _booking = newBooking;
+      return true;
     } catch (e) {
       print(e);
       return false;

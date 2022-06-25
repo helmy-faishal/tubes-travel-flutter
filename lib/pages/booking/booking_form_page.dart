@@ -80,7 +80,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
     Widget nameFormField() {
       return Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.white70,
             borderRadius: BorderRadius.circular(12)
@@ -95,7 +95,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
     Widget pilihPaketWisata() {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
             color: Colors.white70,
@@ -104,7 +104,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Pilih Paket Wisata"),
+            const Text("Pilih Paket Wisata"),
             DropdownButton(
                 isExpanded: true,
                 value: _selectedPaket,
@@ -125,14 +125,14 @@ class _BookingFormPageState extends State<BookingFormPage> {
     Widget pilihMetodePembayaran() {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
             color: Colors.white70, borderRadius: BorderRadius.circular(12)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Pilih Metode Pembayaran"),
+            const Text("Pilih Metode Pembayaran"),
             DropdownButton(
                 isExpanded: true,
                 value: _selectedPembayaran,
@@ -153,7 +153,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
     _pilihTanggalPerjalanan() {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.white70, 
             borderRadius: BorderRadius.circular(12)
@@ -161,22 +161,22 @@ class _BookingFormPageState extends State<BookingFormPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Pilih Tanggal Perjalanan"),
-            SizedBox(height: 10,),
+            const Text("Pilih Tanggal Perjalanan"),
+            const SizedBox(height: 10,),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.grey[100], 
                 borderRadius: BorderRadius.circular(12)
               ),
               child: Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     format.format(_selectedTanggal),
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                       onPressed: () async {
                         DateTime? picked = await showDatePicker(
@@ -206,7 +206,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
     Widget hargaPaket() {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -216,7 +216,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
             ),
             Text(
               'Rp${daftarHarga[_selectedPaket].toString()}',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),

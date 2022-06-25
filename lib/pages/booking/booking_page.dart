@@ -88,7 +88,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Bersantai di pagi hari atau menjelang sunset akan merilekskan pikiran."
+                          "Bersantai di pagi hari atau menjelang sunset akan merilekskan pikiran.",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -117,7 +118,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Akan terasa sangat menyegarkan bermain air di dekat air terjun."
+                          "Akan terasa sangat menyegarkan bermain air di dekat air terjun.",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -146,7 +148,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Nikmati sunrise Bukit Sikunir dan panorama yang memanjakan mata."
+                          "Nikmati sunrise Bukit Sikunir dan panorama yang memanjakan mata.",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -237,7 +240,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Nikmati sunrise Bukit Sikunir dan panorama yang memanjakan mata."
+                          "Nikmati sunrise Bukit Sikunir dan panorama yang memanjakan mata.",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -266,7 +270,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Air yang menyegarkan dan udara yang sejuk membuat diri menjadi tenang dan rileks.."
+                          "Air yang menyegarkan dan udara yang sejuk membuat diri menjadi tenang dan rileks..",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -357,7 +362,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Objek wisata yang menyenangkan dan mengandung nilai - nilai sejarah."
+                          "Objek wisata yang menyenangkan dan mengandung nilai - nilai sejarah.",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -386,7 +392,8 @@ class BookingPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         const Text(
-                          "Sungai Serayu terkenal dengan airnya yang bersih dan tempat yang cocok untuk wisata arung jeram."
+                          "Sungai Serayu terkenal dengan airnya yang bersih dan tempat yang cocok untuk wisata arung jeram.",
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
