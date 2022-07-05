@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
           title: const Text('Login'),
           backgroundColor: bgHeaderColor,
         ),
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             const Header(),

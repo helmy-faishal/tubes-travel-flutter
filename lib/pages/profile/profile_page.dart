@@ -306,6 +306,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('ProfilePage'),
       ),

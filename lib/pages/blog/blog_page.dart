@@ -166,15 +166,6 @@ class _BlogPageState extends State<BlogPage> {
           centerTitle: true,
           // backgroundColor: const Color(0xffEED991),
           // foregroundColor: Colors.black,
-          actions: [
-            IconButton(
-              onPressed: (){
-                Navigator.pushNamed(context, '/login');
-              }, 
-              icon: const Icon(Icons.login),
-              tooltip: 'Login',
-            ),
-          ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

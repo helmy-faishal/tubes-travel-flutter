@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +36,15 @@ class _BookingCardState extends State<BookingCard> {
     handleDelete() async {
       var _token = userProvider.user.token.toString();
       if (await BookingProvider().deleteBooking(widget.data, _token)){
-        Navigator.pushReplacementNamed(context, '/profile/booking');
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: "Berhasil",
+          desc: "Berhasil membatalkan pemesanan",
+        ).show();
+        Timer(const Duration(seconds: 1), (){
+          Navigator.pushReplacementNamed(context, '/profile/booking');
+        });
       }
     }
 

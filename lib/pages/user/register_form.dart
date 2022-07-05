@@ -139,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
           title: const Text('Daftar'),
           backgroundColor: bgHeaderColor,
         ),
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             const Header(),

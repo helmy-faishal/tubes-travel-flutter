@@ -32,7 +32,9 @@ class BookingConfirmation extends StatelessWidget {
           title: "Berhasil",
           desc: "Berhasil melakukan pemesanan",
         ).show();
-        Navigator.pushNamedAndRemoveUntil(context, "/paket", (route) => false);
+        Timer(const Duration(seconds: 1), (){
+          Navigator.pushNamedAndRemoveUntil(context, "/paket", (route) => false);
+        });
       }
     }
 

@@ -252,7 +252,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
           title: const Text('Booking'),
           backgroundColor: bgHeaderColor,
         ),
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         body: Column(children: [
           Container(
             color: Colors.grey[250],
